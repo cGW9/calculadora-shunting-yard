@@ -1,8 +1,5 @@
 import re
 import math
-from Lexer import Lexer
-from dataclasses import dataclass
-from enum import Enum, auto
 
 
 substituicaoEntrada = {

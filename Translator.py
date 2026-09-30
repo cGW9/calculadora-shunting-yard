@@ -1,0 +1,101 @@
+# import re
+# import math
+#
+# class Translator:
+#     def translate(texto: str) -> str:
+#         substituicaoEntrada = {
+#             # Prioridades de cálculo
+#             '[': '(',
+#             ']': ')',
+#             '{': '(',
+#             '}': ')',
+#             # Potência
+#             '^': '**',
+#             'potencia de': '**',
+#             'elevado a': '**',
+#             'ao quadrado': '**2',
+#             'ao cubo': '**3',
+#             # Multiplicação
+#             'x': '*',
+#             'multiplicado por': '*',
+#             'vezes': '*',
+#             # Soma
+#             'mais': '+',
+#             # Subtração
+#             'menos': '-',
+#             # Divisão
+#             'dividido por': '/',
+#             '÷': '/',
+#             'pela metade': '/2',
+#             # Tradução Decimal
+#             ',': '.',
+#             # Logaritmo de base 10
+#             'logaritmo de base 10': 'math.log10(',
+#             'logaritmo 10': 'math.log10(',
+#             'log10': 'math.log10(',
+#             # Logaritmo de base 2
+#             'logaritmo de base 2': 'math.log2(',
+#             'logaritmo 2': 'math.log2(',
+#             'log2': 'math.log2(',
+#             # Logaritmo natural
+#             'logaritmo de': 'math.log(',
+#             'logaritmo': 'math.log(',
+#             'log': 'math.log(',
+#             # Raiz Cubica
+#             'raiz cubica de': 'math.cbrt(',
+#             'raíz cúbica de': 'math.cbrt(',
+#             'raíz cúbica': 'math.cbrt(',
+#             'raiz cubica': 'math.cbrt(',
+#             # Razões trigonométricas
+#             'seno de': 'math.sin(math.radians(',
+#             'seno': 'math.sin(math.radians(',
+#             'sen': 'math.sin(math.radians(',
+#             'tangente de': 'math.tan(math.radians(',
+#             'tangente': 'math.tan(math.radians(',
+#             'tan': 'math.tan(math.radians(',
+#             'cosseno de': 'math.cos(math.radians(',
+#             'cosseno': 'math.cos(math.radians(',
+#             'cos': 'math.cos(math.radians(',
+#             # Fatorial
+#             'fatorial de': 'math.factorial(',
+#             'fatorial': 'math.factorial(',
+#             '!': 'math.factorial(',
+#             # Raiz Quadrada
+#             'raiz de': '√',
+#             'raíz de': '√',
+#             'raíz': '√',
+#             'raiz': '√',
+#             # Definição de Constantes
+#             'π': '3.1415926535897932384626433832795028841971693993751',
+#             'pi': '3.1415926535897932384626433832795028841971693993751',
+#             'e': '2.71828182845904523536028747135266249775724709369995',
+#
+#             # Definição de porcentagem
+#             '%': '/100',
+#         }
+#
+#         texto_minusculo = texto.lower().strip()
+#         padraoLimpezaEntrada = re.compile("|".join(re.escape(chave) for chave in substituicaoEntrada.keys()))
+#         texto_minusculo = re.sub(r'(\d+(?:\.\d+)?)\s*!', r'math.factorial(\1)', texto_minusculo)
+#
+#     # Faz a substituição da entrada uma única vez
+#     # padraoLimpezaEntrada = re.compile("|".join(re.escape(chave) for chave in substituicaoEntrada.keys()))
+#     #
+#     # def higienizarEntrada(texto: str) -> str:
+#     #     texto_minusculo = texto.lower().strip()
+#     #
+#     #     # Ajustando o ! como fatorial antes da limpeza
+#     #     texto_minusculo = re.sub(r'(\d+(?:\.\d+)?)\s*!', r'math.factorial(\1)', texto_minusculo)
+#     #
+#     #     resultado = padraoLimpezaEntrada.sub(lambda m: substituicaoEntrada[m.group(0)], texto_minusculo)
+#     #     # Padroes de entradas
+#     #     resultado = re.sub(r'√(\s?\d+(?:\.\d+)?)', r'(\1 ** 0.5)', resultado)
+#     #     resultado = re.sub(r'metade de(\s\d+(?:\.\d+)?)', r'(\1 /2)', resultado)
+#     #
+#     #     # Fechando os colchetes do cálculo, necessário para operações de seno e cosseno
+#     #     abertos = resultado.count('(')
+#     #     fechados = resultado.count(')')
+#     #     if abertos > fechados:
+#     #         resultado += ')' * (abertos - fechados)
+#     #
+#     #     return resultado
